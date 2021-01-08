@@ -18,6 +18,8 @@
             {% for i in proizvodjac %}
             <tr>
                  <td>{{i.naziv}}</td>
+                 <td><a class="btn btn-sm btn-info" href="{% url 'tastatura:UpdateP' i.id %}">Update</a> </td>
+
             </tr>
             {% endfor %}
         </table>
@@ -44,6 +46,7 @@
                  <td>{{i.naziv}}</td>
                  <td>{{i.cena_DIN}}</td>
                  <td>{{i.proizvedeno_Od}}</td>
+                 <td><a class="btn btn-sm btn-info" href="{% url 'tastatura:UpdateT' i.id %}">Update</a> </td>
             </tr>
             {% endfor %}
         </table>

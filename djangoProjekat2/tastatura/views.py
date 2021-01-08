@@ -41,3 +41,36 @@ def createTastatura(request):
     context = {'form': form}
 
     return render(request, 'tastatura/tastatura.html', context)
+
+def updateTastatura(request, tastatura_id):
+
+    tastatura = Tastatura.objects.get(id = tastatura_id)
+    form = TastaturaForm(instance=tastatura)
+    if request.method == "POST":
+        form = TastaturaForm(request.POST, instance=tastatura)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            print(ValueError)
+
+
+    context = {'form':form}
+    return render(request, 'tastatura/tastatura.html', context)
+
+
+def updateProizvodjac(request, proizvodjac_id):
+
+    proizvodjac = Proizvodjac.objects.get(id = proizvodjac_id)
+    form = ProizvodjacForm(instance=proizvodjac)
+    if request.method == "POST":
+        form = ProizvodjacForm(request.POST, instance=proizvodjac)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            print(ValueError)
+
+
+    context = {'form':form}
+    return render(request, 'tastatura/proizvodjac.html', context)

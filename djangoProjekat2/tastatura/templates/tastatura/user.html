@@ -1,0 +1,30 @@
+{% extends 'tastatura/main.html' %}
+
+{% block content %}
+
+<hr class = "row">
+
+    <div class="col-md-5"></div>
+    {% include 'tastatura/userBrojac.html' %}
+    <h2>Korisnici:</h2>
+
+    <div class="card card-body">
+        <table class="table table-sm">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            {% for i in user %}
+            <tr>
+                 <td>{{i.username}}</td>
+                 <td>{{i.email}}</td>
+                 <td>{{i.password}}</td>
+            </tr>
+
+
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

@@ -6,8 +6,6 @@
     {% include 'tastatura/proizvodjacBrojac.html' %}
     <h2>Proizvodjac:</h2>
 
-    <hr>
-
     <div class="card card-body">
         <table class="table table-sm">
             <tr>
@@ -27,8 +25,6 @@
     {% include 'tastatura/tastaturaBrojac.html' %}
     <h2>Tastatura:</h2>
 
-    <hr>
-
     <div class = "card card-body">
         <table class="table table-sm">
             <tr>
@@ -43,6 +39,29 @@
                  <td>{{i.cena_DIN}}</td>
                  <td>{{i.proizvedeno_Od}}</td>
             </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="col-md-7"></div>
+    {% include 'tastatura/userBrojac.html' %}
+    <h2>Korisnici:</h2>
+
+    <div class="card card-body">
+        <table class="table table-sm">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            {% for i in user %}
+            <tr>
+                 <td>{{i.username}}</td>
+                 <td>{{i.email}}</td>
+                 <td>{{i.password}}</td>
+            </tr>
+
+
             {% endfor %}
         </table>
     </div>

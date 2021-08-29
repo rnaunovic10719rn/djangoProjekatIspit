@@ -1,76 +1,21 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
-# Create your views here.
-
-def userPage(request):
-    proizvodjac = Proizvodjac.objects.all()
-    tastatura = Tastatura.objects.all()
-    return render(request, 'tastatura/user.html', {'proizvodjac': proizvodjac, 'tastatura': tastatura})
 
 
 def dash(request):
     proizvodjac = Proizvodjac.objects.all()
     tastatura = Tastatura.objects.all()
-    return render(request, 'tastatura/dashboard.html', {'proizvodjac': proizvodjac, 'tastatura': tastatura})
+    total_proizvodjac = proizvodjac.count()
+    total_tastatura = tastatura.count()
+    return render(request, 'tastatura/dashboard.html', {'proizvodjac': proizvodjac, 'tastatura': tastatura, 'total_proizvodjac': total_proizvodjac, 'total_tastatura' : total_tastatura})
 
-def createProizvodjac(request):
-    form = ProizvodjacForm()
-    if request.method == 'POST':
-        form = ProizvodjacForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            print(ValueError)
+def proizvodjac(request):
+    proizvodjac = Proizvodjac.objects.all()
+    total_proizvodjac = proizvodjac.count()
+    return render(request, 'tastatura/proizvodjac.html', {'proizvodjac': proizvodjac, 'total_proizvodjac': total_proizvodjac})
 
-    context = {'form': form}
-
-    return render(request, 'tastatura/proizvodjac.html', context)
-
-def createTastatura(request):
-    form = TastaturaForm()
-    if request.method == 'POST':
-        form = TastaturaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            print(ValueError)
-
-    context = {'form': form}
-
-    return render(request, 'tastatura/tastatura.html', context)
-
-def updateTastatura(request, tastatura_id):
-
-    tastatura = Tastatura.objects.get(id = tastatura_id)
-    form = TastaturaForm(instance=tastatura)
-    if request.method == "POST":
-        form = TastaturaForm(request.POST, instance=tastatura)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            print(ValueError)
-
-
-    context = {'form':form}
-    return render(request, 'tastatura/tastatura.html', context)
-
-
-def updateProizvodjac(request, proizvodjac_id):
-
-    proizvodjac = Proizvodjac.objects.get(id = proizvodjac_id)
-    form = ProizvodjacForm(instance=proizvodjac)
-    if request.method == "POST":
-        form = ProizvodjacForm(request.POST, instance=proizvodjac)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            print(ValueError)
-
-
-    context = {'form':form}
-    return render(request, 'tastatura/proizvodjac.html', context)
+def tastatura(request):
+    tastatura = Tastatura.objects.all()
+    total_tastatura = tastatura.count()
+    return render(request, 'tastatura/tastatura.html', {'tastatura': tastatura, 'total_tastatura': total_tastatura})

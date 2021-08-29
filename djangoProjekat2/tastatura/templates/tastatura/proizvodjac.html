@@ -1,11 +1,25 @@
 {% extends 'tastatura/main.html' %}
 {% block content %}
+<hr class = "row">
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" name="Submit">
+    <div class="col-md-5"></div>
+    {% include 'tastatura/proizvodjacBrojac.html' %}
+    <h2>Proizvodjac:</h2>
 
-</form>
+    <hr>
+
+    <div class="card card-body">
+        <table class="table table-sm">
+            <tr>
+                <th>Naziv</th>
+            </tr>
+            {% for i in proizvodjac %}
+            <tr>
+                 <td>{{i.naziv}}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}

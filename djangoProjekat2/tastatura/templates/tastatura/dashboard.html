@@ -1,24 +1,21 @@
 {% extends 'tastatura/main.html' %}
 {% block content %}
-
 <hr class = "row">
 
     <div class="col-md-5"></div>
+    {% include 'tastatura/proizvodjacBrojac.html' %}
     <h2>Proizvodjac:</h2>
 
     <hr>
 
     <div class="card card-body">
-    <a class="btn btn-primary btn-sm btn-block" href="{% url 'tastatura:proizvodjac' %}">Dodaj
-        </a>
         <table class="table table-sm">
             <tr>
-                <th>naziv</th>
+                <th>Naziv</th>
             </tr>
             {% for i in proizvodjac %}
             <tr>
                  <td>{{i.naziv}}</td>
-                 <td><a class="btn btn-sm btn-info" href="{% url 'tastatura:UpdateP' i.id %}">Update</a> </td>
 
             </tr>
             {% endfor %}
@@ -27,18 +24,17 @@
 
 
     <div class="col-md-7"></div>
+    {% include 'tastatura/tastaturaBrojac.html' %}
     <h2>Tastatura:</h2>
 
     <hr>
 
     <div class = "card card-body">
-    <a class="btn btn-primary btn-sm btn-block" href="{% url 'tastatura:tastatura' %}">Dodaj
-        </a>
         <table class="table table-sm">
             <tr>
-                <th>naziv</th>
-                <th>cena</th>
-                <th>prozivedeno od</th>
+                <th>Naziv</th>
+                <th>Cena</th>
+                <th>Prozivedeno od</th>
             </tr>
 
             {% for i in tastatura %}
@@ -46,7 +42,6 @@
                  <td>{{i.naziv}}</td>
                  <td>{{i.cena_DIN}}</td>
                  <td>{{i.proizvedeno_Od}}</td>
-                 <td><a class="btn btn-sm btn-info" href="{% url 'tastatura:UpdateT' i.id %}">Update</a> </td>
             </tr>
             {% endfor %}
         </table>
